@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="reservas">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css" href="./css/estilo.css"/>
+	<title>Reservas De Vuelos</title>
+</head>
+
+<body ng-controller="ControladorReservas" ng-init="getDocumentosID()">	
+	<div class="centrar">		
+		<form class="fondo">
+			<div class="margen">
+				RESERVA DE VUELOS:
+			</div></br>
+			<div class="centrar">
+				<label for="tipoDI">Documentos Identificacion:</label>
+				<select class="inp" id="tipoDI" ng-model="tipoDI" ng-options="tipoDI as tipoDI.descripcion for tipoDI in tiposDIS track by tipoDI.id">
+				</select>					
+				<label class="tab" for="numeroDI">Numero Documento Identificacion:</label>
+				<input class="inp" id="numeroDI" ng-model="numeroDI" type="number" />	
+				<button id="addBtn" class="btn" ng-click="buscarReservas()">Buscar Reservas</button>						
+			</div></br>		
+			<div class="container" ng-show="reservas != null">		
+				<div ng-repeat="reserva in reservas">
+					<div class="centrar">
+						Numero tiquete:{{reserva.id}} - Nombre: {{reserva.persona.nombre}} - Origen : {{reserva.origen.descripcion}} - Fecha Salida: {{reserva.fechaHoraSalida}} 
+						- Destino : {{reserva.destino.descripcion}} - Fecha Llegada: {{reserva.fechaHoraLlegada}} - Precio: {{reserva.precio}}						
+					</div>
+					<div class="separatorInterno"></div>					
+				</div>		
+			<div class="centrar">							
+				<h4>{{msgBusUP}}</h4>				
+			</div></br>
+		</form>	
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-resource.js"></script>		
+	<script src="./js/reservas.js"></script>
+</body>
+</html>
+
+
